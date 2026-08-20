@@ -28,7 +28,11 @@
     (if (neg? i) default (get argv (inc i) default))))
 
 (def quiet? (flag? "--quiet"))
-(def min-citations (js/parseInt (flag-val "--min" "8") 10))
+;; `--min` still wins when given; the DEFAULT comes from the catalogue
+;; itself (`:catalog/min-citations`), so a floor cannot be left behind while
+;; the catalogue grows. A hardcoded 8 against a 28-row catalogue is a floor
+;; that would have to lose 20 rows before it said anything.
+(def min-citations-flag (flag-val "--min" nil))
 (def gap-ms (js/parseInt (flag-val "--gap-ms" "200") 10))
 ;; Strip flag *values* as well as flags so `--min 13` cannot become the catalog path
 ;; (fleet gates put <dir> first; locally people put flags first — both must work).
@@ -128,9 +132,20 @@
                    (println "PARSE-FAIL" (.-message e))
                    (finish! 2)
                    nil))
-        entries (when raw (:catalog/entries raw))]
+        entries (when raw (:catalog/entries raw))
+        declared-min (when raw (:catalog/min-citations raw))
+        min-citations (cond
+                        min-citations-flag (js/parseInt min-citations-flag 10)
+                        (integer? declared-min) declared-min
+                        :else nil)]
     (when-not (seq entries)
       (println "EMPTY catalog entries")
+      (finish! 2))
+    ;; No floor at all is "could not answer", not "nothing was wrong". A run
+    ;; that checks whatever happens to be in the file and calls it a pass is
+    ;; the shape this exit code exists to keep out.
+    (when (and (seq entries) (nil? min-citations))
+      (println "NO FLOOR: declare :catalog/min-citations or pass --min")
       (finish! 2))
     (when (seq entries)
       (-> (reduce
