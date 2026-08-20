@@ -1,0 +1,185 @@
+;; Public-global resource-flow citation catalog for axis-ingest.
+;;
+;; README / PROJECT.jsonld claim a global resource-flow intelligence surface.
+;; The declared product host (global.etzhayyim.com) did not resolve at catalog
+;; write time (curl connect failure) — it is NOT cited here. Citations are the
+;; public statistical / geospatial feeds such a platform would refresh from,
+;; plus schema and self-surface pins that make the claim falsifiable.
+;;
+;; Gate: `nbb tools/verify_citations.cljs` must exit 0. Do not add a URL that
+;; does not return 2xx under that gate.
+
+{:catalog/id "public-global/resource-flow-sources/v1"
+ :catalog/about
+ "Public statistical and geospatial endpoints that a global resource-flow
+  catalogue is designed to refresh from. Citations make the README claim
+  falsifiable without inventing a live product host."
+
+ :catalog/entries
+ [{:cite/id :worldbank/home
+   :cite/url "https://www.worldbank.org/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "World Bank"
+   :cite/note "World Bank Group publisher home."}
+
+  {:cite/id :worldbank/api-country
+   :cite/url "https://api.worldbank.org/v2/country?format=json&per_page=1"
+   :cite/kind :stats-api
+   :cite/expect-substring "Aruba"
+   :cite/note "World Bank countries JSON API (region roster for flow nodes)."}
+
+  {:cite/id :worldbank/api-gdp
+   :cite/url "https://api.worldbank.org/v2/indicator/NY.GDP.MKTP.CD?format=json&per_page=1&date=2020"
+   :cite/kind :stats-api
+   :cite/expect-substring "GDP"
+   :cite/note "World Bank GDP (current US$) indicator metadata."}
+
+  {:cite/id :worldbank/api-population
+   :cite/url "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?format=json&date=2022&per_page=1"
+   :cite/kind :stats-api
+   :cite/expect-substring "SP.POP.TOTL"
+   :cite/note "World Bank total population series (flow denominator)."}
+
+  {:cite/id :worldbank/data-portal
+   :cite/url "https://data.worldbank.org/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "World Bank"
+   :cite/note "World Bank Open Data portal."}
+
+  {:cite/id :worldbank/climate-data
+   :cite/url "https://climatedata.worldbank.org/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "CCKP"
+   :cite/note "World Bank Climate Change Knowledge Portal data site."}
+
+  {:cite/id :fao/faostat
+   :cite/url "https://www.fao.org/faostat/en/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "FAOSTAT"
+   :cite/note "FAOSTAT — agricultural / food resource statistics."}
+
+  {:cite/id :owid/home
+   :cite/url "https://ourworldindata.org/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "Our World in Data"
+   :cite/note "Our World in Data — curated global indicator charts."}
+
+  {:cite/id :un/sdg-goals-api
+   :cite/url "https://unstats.un.org/SDGAPI/v1/sdg/Goal/List"
+   :cite/kind :stats-api
+   :cite/expect-substring "End poverty"
+   :cite/note "UN Stats SDG Goals JSON API."}
+
+  {:cite/id :un/sdg-dataportal
+   :cite/url "https://unstats.un.org/sdgs/dataportal"
+   :cite/kind :publisher-home
+   :cite/expect-substring "SDG"
+   :cite/note "UN SDG data portal (human entry to the same family)."}
+
+  {:cite/id :un/wpp
+   :cite/url "https://population.un.org/wpp/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "World Population"
+   :cite/note "UN World Population Prospects."}
+
+  {:cite/id :un/population-indicators-api
+   :cite/url "https://population.un.org/dataportalapi/api/v1/indicators?pageNumber=1&pageSize=1"
+   :cite/kind :stats-api
+   :cite/expect-substring "pageNumber"
+   :cite/note "UN Population Division dataportal indicators API."}
+
+  {:cite/id :who/gho-dimensions
+   :cite/url "https://ghoapi.azureedge.net/api/Dimension"
+   :cite/kind :stats-api
+   :cite/expect-substring "AGEGROUP"
+   :cite/note "WHO Global Health Observatory OData dimensions."}
+
+  {:cite/id :who/home
+   :cite/url "https://www.who.int/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "World Health Organization"
+   :cite/note "WHO publisher home."}
+
+  {:cite/id :ember/data
+   :cite/url "https://ember-climate.org/data/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "Ember"
+   :cite/note "Ember electricity / energy open data landing."}
+
+  {:cite/id :iea/data-and-statistics
+   :cite/url "https://www.iea.org/data-and-statistics"
+   :cite/kind :publisher-home
+   :cite/expect-substring "IEA"
+   :cite/note "IEA data and statistics hub."}
+
+  {:cite/id :eia/home
+   :cite/url "https://www.eia.gov/"
+   :cite/kind :publisher-home
+   :cite/expect-substring "Energy Information"
+   :cite/note "U.S. EIA — energy production / trade series."}
+
+  {:cite/id :naturalearth/home
+   :cite/url "https://www.naturalearthdata.com/"
+   :cite/kind :geospatial
+   :cite/expect-substring "Natural Earth"
+   :cite/note "Natural Earth — public domain map base layers."}
+
+  {:cite/id :osm/home
+   :cite/url "https://www.openstreetmap.org/"
+   :cite/kind :geospatial
+   :cite/expect-substring "OpenStreetMap"
+   :cite/note "OpenStreetMap — global geographic substrate."}
+
+  {:cite/id :osm/nominatim-status
+   :cite/url "https://nominatim.openstreetmap.org/status"
+   :cite/kind :geospatial
+   :cite/expect-substring "OK"
+   :cite/note "Nominatim status probe (geocoder health)."}
+
+  {:cite/id :world-atlas/countries-110m
+   :cite/url "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
+   :cite/kind :geospatial
+   :cite/expect-substring "Topology"
+   :cite/note "TopoJSON world countries (110m) for flow map projection."}
+
+  {:cite/id :geo-countries/geojson
+   :cite/url "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson"
+   :cite/kind :geospatial
+   :cite/expect-substring "FeatureCollection"
+   :cite/note "datasets/geo-countries admin-0 GeoJSON."}
+
+  {:cite/id :datasets/gdp-csv
+   :cite/url "https://raw.githubusercontent.com/datasets/gdp/master/data/gdp.csv"
+   :cite/kind :stats-api
+   :cite/expect-substring "Country Name"
+   :cite/note "datasets/gdp CSV (country-year GDP rows)."}
+
+  {:cite/id :schema/dataset
+   :cite/url "https://schema.org/Dataset"
+   :cite/kind :schema
+   :cite/expect-substring "Dataset"
+   :cite/note "schema.org Dataset vocabulary (resource-series packaging)."}
+
+  {:cite/id :w3/json-ld11
+   :cite/url "https://www.w3.org/TR/json-ld11/"
+   :cite/kind :schema
+   :cite/expect-substring "JSON-LD"
+   :cite/note "JSON-LD 1.1 — PROJECT.jsonld surface grammar."}
+
+  {:cite/id :self/readme-raw
+   :cite/url "https://raw.githubusercontent.com/cloud-itonami/public-global/54ba669e5db0a22fc60c4547fe1a13d3f7c2a504/README.md"
+   :cite/kind :self-surface
+   :cite/expect-substring "Global Resource Flow"
+   :cite/note "Pinned README at pre-ingest tip (self-surface claim)."}
+
+  {:cite/id :self/project-jsonld-raw
+   :cite/url "https://raw.githubusercontent.com/cloud-itonami/public-global/54ba669e5db0a22fc60c4547fe1a13d3f7c2a504/PROJECT.jsonld"
+   :cite/kind :self-surface
+   :cite/expect-substring "resource-flow"
+   :cite/note "Pinned PROJECT.jsonld at pre-ingest tip."}
+
+  {:cite/id :self/commits-main
+   :cite/url "https://api.github.com/repos/cloud-itonami/public-global/commits/main"
+   :cite/kind :self-surface
+   :cite/expect-substring "sha"
+   :cite/note "GitHub commits API for this leaf."}]}
