@@ -1,0 +1,4 @@
+;; Empty top-level :deps — citation catalog leaf does not pull JVM libs
+;; (ADR-2608201300). Gate is nbb tools/verify_citations.cljs.
+{:paths ["."]
+ :deps {}}
