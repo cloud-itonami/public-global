@@ -18,7 +18,7 @@
   the extraction never carried them. A reader following the README looked for
   a component that had never been in this repository."
   (:require [clojure.edn :as edn]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [clojure.test :refer [deftest is testing]]
             #?(:cljs ["fs" :as fs])))
 

@@ -1,4 +1,9 @@
 ;; Empty top-level :deps — citation catalog leaf does not pull JVM libs
 ;; (ADR-2608201300). Gate is nbb tools/verify_citations.cljs.
 {:paths ["."]
- :deps {}}
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}
+       }}
