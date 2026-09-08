@@ -15,7 +15,7 @@
 
 (ns verify-citations
   (:require [clojure.edn :as edn]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             ["fs" :as fs]
             ["https" :as https]
             ["http" :as http]
