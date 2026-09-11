@@ -36,11 +36,11 @@ MCP_TOOLS.md                # MCP tool contract documentation
 README.edn                  # Machine-readable self-description
 migration.edn               # Provenance: what was extracted, and from where
 facts/catalog.edn           # Cited public sources, with a declared floor
-tools/verify_citations.cljs # Live gate: every citation must return 2xx
-test/run.cljs               # Offline gate: the records parse and agree
+tools/verify_citations.cljk # Live gate: every citation must return 2xx
+test/run.cljk               # Offline gate: the records parse and agree
 ```
 
-Every path above exists — `test/public_global/records_test.cljc` reads this
+Every path above exists — `test/public_global/records_test.cljk` reads this
 block and fails if one does not. It was added because this list previously
 described a `wasm/global-mcp-component/` tree that the extraction never
 carried (`migration.edn` records `:go-files-created 0` in the same directory),
@@ -53,8 +53,8 @@ implements is `MCP_TOOLS.md`; the component itself stayed behind in
 ## Gates
 
 ```bash
-nbb --classpath "test:." test/run.cljs        # offline: parses, shapes, this README
-nbb tools/verify_citations.cljs               # live: every cited URL returns 2xx
+nbb --classpath "test:." test/run.cljk        # offline: parses, shapes, this README
+nbb tools/verify_citations.cljk               # live: every cited URL returns 2xx
 ```
 
 The two are separate because they answer different questions and fail for
