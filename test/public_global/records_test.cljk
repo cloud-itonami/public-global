@@ -1,7 +1,7 @@
 (ns public-global.records-test
   "Offline invariants for a repository that is entirely records.
 
-  `tools/verify_citations.cljs` is the LIVE gate: it fetches every citation and
+  `tools/verify_citations.cljk` is the LIVE gate: it fetches every citation and
   is therefore worth exactly as much as the network at the moment it runs. It
   cannot answer the questions below, and it stops answering anything at all on
   a plane or behind a proxy — so the two are separate on purpose. This file

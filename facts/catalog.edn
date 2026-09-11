@@ -6,7 +6,7 @@
 ;; public statistical / geospatial feeds such a platform would refresh from,
 ;; plus schema and self-surface pins that make the claim falsifiable.
 ;;
-;; Gate: `nbb tools/verify_citations.cljs` must exit 0. Do not add a URL that
+;; Gate: `nbb tools/verify_citations.cljk` must exit 0. Do not add a URL that
 ;; does not return 2xx under that gate.
 
 {:catalog/id "public-global/resource-flow-sources/v1"
@@ -17,7 +17,7 @@
 
  ;; The floor the live gate holds the catalogue to. Declared HERE rather than
  ;; left to a flag default so that emptying the catalogue cannot quietly pass:
- ;; `tools/verify_citations.cljs` reads this, and `test/public_global/
+ ;; `tools/verify_citations.cljk` reads this, and `test/public_global/
  ;; records_test.cljc` fails if the two drift apart or if the floor sinks far
  ;; below the real count. A floor of 8 against 28 rows would have to lose most
  ;; of the catalogue before it noticed.
