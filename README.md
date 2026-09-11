@@ -53,8 +53,8 @@ implements is `MCP_TOOLS.md`; the component itself stayed behind in
 ## Gates
 
 ```bash
-nbb --classpath "test:." test/run.cljk        # offline: parses, shapes, this README
-nbb tools/verify_citations.cljk               # live: every cited URL returns 2xx
+kbb --backend sci --classpath "test:." test/run.cljk        # offline: parses, shapes, this README
+kbb --backend sci tools/verify_citations.cljk               # live: every cited URL returns 2xx
 ```
 
 The two are separate because they answer different questions and fail for
