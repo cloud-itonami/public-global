@@ -17,7 +17,7 @@
   and `migration.edn` recorded `:go-files-created 0` in the same directory —
   the extraction never carried them. A reader following the README looked for
   a component that had never been in this repository."
-  (:require [clojure.edn :as edn]
+  (:require [kotoba.io :as kio] [clojure.edn :as edn]
             [kotoba.lang.text :as str]
             [kotoba.test :refer [deftest is testing]]
             #?(:cljs ["fs" :as fs])))
@@ -28,7 +28,7 @@
 
 (defn- exists? [path]
   #?(:cljs (.existsSync fs path)
-     :clj (.exists (java.io.File. ^String path))))
+     :clj (kio/exists? (kio/file ^String path))))
 
 (def edn-records ["README.edn" "migration.edn" "deps.edn" "facts/catalog.edn"])
 (def json-records ["PROJECT.jsonld" "scheduler.jsonld"])
